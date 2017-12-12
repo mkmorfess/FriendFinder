@@ -1,8 +1,19 @@
 $(document).ready(function(){
-	var idNum = 1;
-// $(":selected")
+	// $(":selected")
+	var matches = [];
 
-	for (var i = 0; i < 11; i++) {
+	function NewFriend (name, photo, scores) {
+
+		this.name = name;
+		this.photo = photo;
+		this.scores = scores;
+
+	}
+
+	var idNum = 1;
+
+
+	for (var i = 0; i < 10; i++) {
 
 		var newSelect = $("<select>");
 
@@ -42,5 +53,52 @@ $(document).ready(function(){
 		}
 		idNum++
 	}
+
+
+
+		$("form").submit(function(event){
+			event.preventDefault();
+
+			var name = $("#name").val().trim()
+			var photo = $("#photo").val().trim()
+			var scores = [];
+
+			for (var i = 1; i < 11; i++) {
+
+				scores.push($("#q" + i).val())
+			}
+
+			if (scores.includes("Please Choose A Number")) {
+
+				alert("Please Answer All The Questions")
+				scores = [];
+
+			}
+
+			else {
+
+			
+
+				var newFriend = new NewFriend(name, photo, scores);
+
+				matches.push(newFriend);
+
+				console.log(matches);
+
+				$("#name").val("")
+				$("#photo").val("")
+
+				for (var i = 1; i < 11; i++) {
+					$("#q" + i).val("Please Choose A Number");
+				}
+
+				//add modal here
+
+				alert("Submitted");
+
+			}
+
+			
+		})
 
 })
