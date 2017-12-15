@@ -19,7 +19,8 @@ $(document).ready(function(){
 	for (var i = 0; i < 10; i++) {
 
 		var newSelect = $("<select>");
-
+		newSelect.addClass("form-control")
+		
 		newSelect.attr("id", "q" + idNum);
 
 		$("#chooseSelect-" + idNum).html(newSelect);
@@ -60,8 +61,9 @@ $(document).ready(function(){
 
 
 		$("form").submit(function(event){
-			event.preventDefault();
 
+			event.preventDefault();
+			
 			var name = $("#name").val().trim()
 			var photo = $("#photo").val().trim()
 			var scores = [];
@@ -80,7 +82,7 @@ $(document).ready(function(){
 
 			else {
 
-			
+				
 
 				var newFriend = new NewFriend(name, photo, scores);
 
@@ -89,10 +91,10 @@ $(document).ready(function(){
 				var currentEntry = matches[matches.length -1];
 				var currentName = currentEntry.name;
 				var currentScores = currentEntry.scores;
-				console.log(matches);
-				console.log(currentEntry);
-				console.log(currentName);
-				console.log(currentScores);
+				// console.log(matches);
+				// console.log(currentEntry);
+				// console.log(currentName);
+				// console.log(currentScores);
 
 				$("#name").val("")
 				$("#photo").val("")
@@ -100,10 +102,6 @@ $(document).ready(function(){
 				for (var i = 1; i < 11; i++) {
 					$("#q" + i).val("Please Choose A Number");
 				}
-
-				//add modal here
-
-				alert("Submitted");
 
 				if (matches.length < 2) {
 
@@ -129,8 +127,8 @@ $(document).ready(function(){
 						scores.push(add);
 
 						add = 0;
-						console.log(names);
-						console.log(scores);
+						// console.log(names);
+						// console.log(scores);
 
 
 					}
@@ -162,11 +160,14 @@ $(document).ready(function(){
 					    } while (swapped);  
 					}  
 
-						console.log(names);
-						console.log(scores);
+						// console.log(names);
+						// console.log(scores);
 
 
 					if (scores.length === 1) {
+
+						$("#mymodal").show();
+						
 						alert("Your match is... " + names[0]);
 					}
 
@@ -175,15 +176,17 @@ $(document).ready(function(){
 						for (var i = 0; i < scores.length; i++) {
 							if (scores[i] === scores[i + 1]) {
 								closerMatches.push(names[i]);
-								closerMatches.push(names[i + 1]);
+								
 							}
 							else {
+								closerMatches.push(names[i]);
 								break;
 							}
 
 						}
 
 						if (closerMatches.length > 0) {
+							// console.log(closerMatches);
 							var randomMatch = closerMatches[Math.floor(Math.random() * closerMatches.length)];
 
 							alert("Your match is... " + randomMatch);
@@ -204,6 +207,10 @@ $(document).ready(function(){
 			
 
 			
+		})
+
+		$("#close").click(function(){
+			$("#mymodal").hide();
 		})
 
 })
