@@ -46,15 +46,14 @@ app.get("/api/:friend?", function(req, res) {
 
 
 app.post("/api/new", function(req, res) {
-  // req.body hosts is equal to the JSON post sent from the user
-  // This works because of our body-parser middleware
+ 
   var newfriend = req.body;
   // newcharacter.routeName = newcharacter.name.replace(/\s+/g, "").toLowerCase();
 
   console.log(newfriend);
   console.log("^ This is new friend");
 
- data.UserFriend(newfriend.name, newfriend.photo, newfriend.scores)
+ data.UserFriend(newfriend.name, newfriend.photo, newfriend.scores11)
 
   res.json(newfriend);
 });
