@@ -1,25 +1,70 @@
-var server = require("../../server.js");
-var api = require("./apiRoutes.js");
+// var server = require("../../server.js");
+// var api = require("./apiRoutes.js");
+var data = require("../data/data.js")
+var express = require("express");
+var bodyParser = require("body-parser");
+var path = require("path");
+
+var app = express();
+
+var PORT = 3000;
 
 
-server.app.get("/", function(req, res) {
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
-	res.sendFile(server.path.join(__dirname, "../public/home.html"));
+
+app.get("/", function(req, res) {
+
+	res.sendFile(path.join(__dirname, "../public/home.html"));
 
 });
 
-server.app.get("/survey", function(req, res) {
+app.get("/survey", function(req, res) {
 
-	res.sendFile(server.path.join(__dirname, "../public/survey.html"));
+	res.sendFile(path.join(__dirname, "../public/survey.html"));
 
 })
 
-api.apiRoute();
+app.get("/api/:friend?", function(req, res) {
+
+	var chosen = req.params.friend;
+
+  if (chosen) {
+    console.log(chosen);
+
+    for (var i = 0; i < data.matches.length; i++) {
+      if (chosen === data.matches[i].name) {
+        return res.json(data.matches[i]);
+      }
+    }
+    return res.json(false);
+  }
+  return res.json(data.matches);
+});
+	
 
 
-server.app.listen(server.PORT, function(){
+app.post("/api/new", function(req, res) {
+  // req.body hosts is equal to the JSON post sent from the user
+  // This works because of our body-parser middleware
+  var newfriend = req.body;
+  // newcharacter.routeName = newcharacter.name.replace(/\s+/g, "").toLowerCase();
 
-	console.log("Listening on port: " + server.PORT);
+  console.log(newfriend);
+
+  data.matches.push(newfriend);
+
+  res.json(newfriend);
+});
+
+
+
+
+
+app.listen(PORT, function(){
+
+	console.log("Listening on port: " + PORT);
 
 });
 

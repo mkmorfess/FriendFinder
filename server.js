@@ -4,6 +4,8 @@ var path = require("path");
 
 var app = express();
 
+var publicConnection = app.use(express.static(__dirname + "app/public"));;
+
 var PORT = 3000;
 
 
@@ -12,5 +14,6 @@ module.exports = {
 	body: body,
 	path: path,
 	app: app,
-	PORT: PORT
+	PORT: PORT,
+	publicConnection: publicConnection
 }

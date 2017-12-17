@@ -1,18 +1,10 @@
+
 $(document).ready(function(){
-	// $(":selected")
-	var matches = [];
-	
 
-	function NewFriend (name, photo, scores) {
 
-		this.name = name;
-		this.photo = photo;
-		this.scores = scores;
+//This function creates the 10 drop downs for the questions each with 5 numbers to choose from
 
-		
-
-	}
-
+function createQuestions() {
 	var idNum = 1;
 
 
@@ -58,12 +50,23 @@ $(document).ready(function(){
 		idNum++
 	}
 
+}
 
+createQuestions();
+
+		//here is the submit button function which takes in the user values and posts them...
 
 		$("form").submit(function(event){
 
 			event.preventDefault();
 			
+			 $.post("/api/new", newCharacter)
+      		.done(function(data) {
+        console.log(data);
+        alert("Adding character...");
+      });
+
+
 			var name = $("#name").val().trim()
 			var photo = $("#photo").val().trim()
 			var scores = [];
@@ -165,10 +168,10 @@ $(document).ready(function(){
 
 
 					if (scores.length === 1) {
-
+						$("#friend").html(names[0] + "!")
 						$("#mymodal").show();
 						
-						alert("Your match is... " + names[0]);
+						// alert("Your match is... " + names[0]);
 					}
 
 					else if (scores.length > 1) {
@@ -189,11 +192,15 @@ $(document).ready(function(){
 							// console.log(closerMatches);
 							var randomMatch = closerMatches[Math.floor(Math.random() * closerMatches.length)];
 
-							alert("Your match is... " + randomMatch);
+							$("#friend").html(randomMatch + "!")
+							$("#mymodal").show();
+							// alert("Your match is... " + randomMatch);
 						}
 
 						else {
-							alert("Your match is... " + names[0]);
+							$("#friend").html(names[0] + "!")
+							$("#mymodal").show();
+							// alert("Your match is... " + names[0]);
 						}
 
 					}
