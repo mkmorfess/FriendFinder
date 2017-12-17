@@ -52,8 +52,9 @@ app.post("/api/new", function(req, res) {
   // newcharacter.routeName = newcharacter.name.replace(/\s+/g, "").toLowerCase();
 
   console.log(newfriend);
+  console.log("^ This is new friend");
 
-  data.matches.push(newfriend);
+ data.UserFriend(newfriend.name, newfriend.photo, newfriend.scores)
 
   res.json(newfriend);
 });

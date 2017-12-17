@@ -43,7 +43,15 @@
 
 	createFriends();
 
+
+	function UserFriend (name, photo, scores) {
+		var newFriend = new NewFriend(name, photo, scores);
+		matches.push(newFriend);
+	}
+
 	module.exports = {
-		matches: matches
+		matches: matches,
+		UserFriend: UserFriend
+
 	}
 

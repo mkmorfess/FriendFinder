@@ -60,26 +60,22 @@ createQuestions();
 
 			event.preventDefault();
 			
-			 $.post("/api/new", newCharacter)
-      		.done(function(data) {
-        console.log(data);
-        alert("Adding character...");
-      });
-
-
-			var name = $("#name").val().trim()
-			var photo = $("#photo").val().trim()
-			var scores = [];
+			var newPerson = {
+			 name: $("#name").val().trim(),
+			 photo: $("#photo").val().trim(),
+			 scores: []
+			}
+			
 
 			for (var i = 1; i < 11; i++) {
 
-				scores.push($("#q" + i).val())
+				newPerson.scores.push($("#q" + i).val())
 			}
 
-			if (scores.includes("Please Choose A Number")) {
+			if (newPerson.scores.includes("Please Choose A Number")) {
 
 				alert("Please Answer All The Questions")
-				scores = [];
+				newPerson.scores = [];
 
 			}
 
@@ -87,17 +83,28 @@ createQuestions();
 
 				
 
-				var newFriend = new NewFriend(name, photo, scores);
+				// var newFriend = new NewFriend(newPerson.name, newPerson.photo, newPerson.scores);
 
-				matches.push(newFriend);
+				// matches.push(newFriend);
 
-				var currentEntry = matches[matches.length -1];
-				var currentName = currentEntry.name;
-				var currentScores = currentEntry.scores;
+				
 				// console.log(matches);
 				// console.log(currentEntry);
 				// console.log(currentName);
 				// console.log(currentScores);
+
+				$.post("/api/new", newPerson)
+      				.done(function(data) {
+        				console.log(data);
+        				alert("Adding character...");
+      			});
+
+      			$.get("/api/" + newPerson.name, function(data) {
+        			console.log(data);
+     //    			var currentEntry = data.matches[matches.length -1];
+					// var currentName = currentEntry.name;
+					// var currentScores = currentEntry.scores;
+        		});
 
 				$("#name").val("")
 				$("#photo").val("")
