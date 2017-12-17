@@ -59,15 +59,13 @@ $(document).ready(function(){
 	$("form").submit(function(event){
 
 		event.preventDefault();
-		
-		var userName = $("#name").val().trim();
-		var photo = $("#photo").val().trim();
-		var scores = [];
-		// var newPerson = {
-		// 	"name": $("#name").val().trim(),
-		// 	"photo": $("#photo").val().trim(),
-		// 	"scores": []
-		// }
+			
+		var newPerson = {
+			name: $("#name").val().trim(),
+			photo: $("#photo").val().trim(),
+			scores: []
+		}
+			
 			
 
 		for (var i = 1; i < 11; i++) {
@@ -79,7 +77,7 @@ $(document).ready(function(){
 		if (newPerson.scores.includes("Please Choose A Number")) {
 
 			alert("Please Answer All The Questions")
-			newPerson.scores = [];
+			// newPerson.scores = [];
 
 		}
 
@@ -100,47 +98,60 @@ $(document).ready(function(){
 			// var currentEntry = data.matches[matches.length -1];
 			// var currentName = currentEntry.name;
 			// var currentScores = currentEntry.scores;
-
+			// console.log(newPerson)
 			var currentEntry;
 			var currentName;
 			var currentScores;
 
-			$.post("/api/new", userName + photo + scores)
+			$.post({url: "/api/new", contentType: "application/json", data: JSON.stringify(newPerson)})
   				.done(function(data) {
   					// console.log("This is POST data log __")
     			// 	console.log(data);
-    			// 	alert("Adding character...");
+    			// 	alert("Adding friend...");
   			});
 
-  			$.get("/api/" + newPerson.name, function(newData) {
-  				// console.log("This is GET data log __")
-    			// console.log(data.name);
-    			currentEntry = newData;
-    			currentName = newData.name;
-    			currentScores = newData.scores;
- 				// console.log(currentEntry);
-				// console.log(currentName);
-				// console.log(currentScores);
+  			newPerson.name = newPerson.name.replace(/\s+/g, " ").toLowerCase();
+
+			$.get("/api", function(data) {
+				// console.log("This is the 1st GET request");
+				// console.log(data);
+				for (var i = 0; i < data.length; i++) {
+					if (i < data.length - 1) {
+						matches.push(data[i]);
+					}
+					else {
+						currentEntry = data[i];
+						currentName = data[i].name;
+						currentScores = data[i].scores
+					}
+				}
+				// console.log("This is the matches")
+				// console.log(matches)
+
+	  			// $.get("/api/" + newPerson.name, function(newData) {
+	  			// 	console.log("This is the 2nd GET data log __")
+	    	// 		console.log(newData[newData.length - 1].name);
+	    	// 		currentEntry = newData[newData.length - 1];
+	    	// 		currentName = newData[newData.length - 1].name;
+	    	// 		currentScores = newData[newData.length - 1].scores;
+	 				// console.log(currentEntry);
+					// console.log(currentName);
+					// console.log(currentScores);
     			
     		
-
-    			$.get("/api", function(data) {
-    			// console.log("This is the 2nd GET request");
-    			// console.log(data);
-	    			for (var i = 0; i < data.length - 1; i++) {
-	    				matches.push(data[i]);
-	    			}
-	    			// console.log("This is the matches")
-	    			// console.log(matches)
+					// console.log(currentEntry);
+					// console.log(currentName);
+					// console.log(currentScores);
+    		
 	    			
 
 
 	    		
 
-		    		console.log("THIS IS THE STUFF OUTSIDE THE GET STUFF")
-		    		console.log(currentEntry);
-		    		console.log(matches);
-		    		console.log("______________________________________")
+		    		// console.log("THIS IS THE STUFF OUTSIDE THE GET STUFF")
+		    		// console.log(currentEntry);
+		    		// console.log(matches);
+		    		// console.log("______________________________________")
 
 		    		
 
@@ -166,11 +177,12 @@ $(document).ready(function(){
 
 							var currentMatch = matches[i];
 							names.push(currentMatch.name);
-							console.log(currentMatch);
+							// console.log(currentMatch);
 
 							for (var j = 0; j < currentMatch.scores.length; j++) {
 
 								add += Math.abs(currentEntry.scores[j] - currentMatch.scores[j])
+								//currentEntry.scores[j]
 
 							}
 
@@ -215,6 +227,7 @@ $(document).ready(function(){
 
 
 						if (scores.length === 1) {
+							names[0] = names[0].toUpperCase() + names[0].substring(1);
 							$("#friend").html(names[0] + "!")
 							$("#mymodal").show();
 							
@@ -238,13 +251,14 @@ $(document).ready(function(){
 							if (closerMatches.length > 0) {
 								// console.log(closerMatches);
 								var randomMatch = closerMatches[Math.floor(Math.random() * closerMatches.length)];
-
+								randomMatch = randomMatch[0].toUpperCase() + randomMatch.substring(1);
 								$("#friend").html(randomMatch + "!")
 								$("#mymodal").show();
 								// alert("Your match is... " + randomMatch);
 							}
 
 							else {
+								names[0] = names[0].toUpperCase() + names[0].substring(1);
 								$("#friend").html(names[0] + "!")
 								$("#mymodal").show();
 								// alert("Your match is... " + names[0]);
@@ -252,8 +266,9 @@ $(document).ready(function(){
 
 						}
 
+
 					}
-				})
+				// })
 			})
 			
 		}
