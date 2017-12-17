@@ -271,7 +271,7 @@ $(document).ready(function(){
 			var currentName;
 			var currentScores;
 
-			$.post("/api/new", newPerson)
+			$.post({url: "/api/new", contentType: "application/json", data: JSON.stringify(newPerson)})
   				.done(function(data) {
   					console.log("This is POST data log __")
     				console.log(data);
@@ -280,26 +280,35 @@ $(document).ready(function(){
 
   			newPerson.name = newPerson.name.replace(/\s+/g, "_").toLowerCase();
 
-  			$.get("/api/" + newPerson.name, function(newData) {
-  				console.log("This is GET data log __")
-    			console.log(newData.name);
-    			currentEntry = newData;
-    			currentName = newData.name;
-    			currentScores = newData.scores;
- 				// console.log(currentEntry);
-				// console.log(currentName);
-				// console.log(currentScores);
+			$.get("/api", function(data) {
+				console.log("This is the 1st GET request");
+				console.log(data);
+				for (var i = 0; i < data.length; i++) {
+					if (i < data.length - 1) {
+						matches.push(data[i]);
+					}
+					else {
+						currentEntry = data[i];
+						currentName = data[i].name;
+						currentScores = data[i].scores
+					}
+				}
+				console.log("This is the matches")
+				console.log(matches)
+
+	  			// $.get("/api/" + newPerson.name, function(newData) {
+	  			// 	console.log("This is the 2nd GET data log __")
+	    	// 		console.log(newData[newData.length - 1].name);
+	    	// 		currentEntry = newData[newData.length - 1];
+	    	// 		currentName = newData[newData.length - 1].name;
+	    	// 		currentScores = newData[newData.length - 1].scores;
+	 				// console.log(currentEntry);
+					// console.log(currentName);
+					// console.log(currentScores);
     			
     		
 
-    			$.get("/api", function(data) {
-    			console.log("This is the 2nd GET request");
-    			console.log(data);
-	    			for (var i = 0; i < data.length - 1; i++) {
-	    				matches.push(data[i]);
-	    			}
-	    			console.log("This is the matches")
-	    			console.log(matches)
+    		
 	    			
 
 
@@ -338,7 +347,8 @@ $(document).ready(function(){
 
 							for (var j = 0; j < currentMatch.scores.length; j++) {
 
-								add += Math.abs(currentEntry.scores[j] - currentMatch.scores[j])
+								add += Math.abs(1 - currentMatch.scores[j])
+								//currentEntry.scores[j]
 
 							}
 
@@ -422,7 +432,7 @@ $(document).ready(function(){
 
 
 					}
-				})
+				// })
 			})
 			
 		}

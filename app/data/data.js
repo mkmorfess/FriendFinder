@@ -15,7 +15,7 @@
 
 
 
-		var name = ["Mike", "Chris", "Collin", "Ferenc", "Lloyd", "Brad", "Brandon", "Victor", "Adrian", "Xavier", "Matthew"];
+		var name = ["mike", "chris", "collin", "ferenc", "lloyd", "brad", "brandon", "victor", "adrian", "xavier", "matthew"];
 		var pics = ["mike.jpg", "chris.png", "collin.jpeg", "ferenc.jpg", "lloyd.png", "brad.jpg", "brandon.jpg", "victor.png", "adrian.png", "xavier.jpg", "matthew.png"]
 		var theScores = [1, 2, 3, 4, 5];
 		var randomScores = [];
