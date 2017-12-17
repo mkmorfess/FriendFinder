@@ -8,3 +8,6 @@
 	z-index: 1;
 	overflow: auto;
 }
+.submit {
+	margin-bottom: 40px;
+}

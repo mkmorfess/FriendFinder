@@ -42,102 +42,120 @@
 						</div>
 					</div>
 
-				<h2>Survey Questions</h2>
+				<div class="container">
+					<div class="row">
+						<div class="col-md-12">
 
-				<hr>
+							<h2>Survey Questions</h2>
 
-				<h3><strong>About You</strong></h3>
-				<form>
-					<h4>Name (Required)</h4>
-					<input type="text" id="name" class="form-control" required>
-					<h4>Link to Photo Image (Required)</h4>
-					<input type="file" id="photo" required>
-					<hr>
+							<hr>
 
-					<h3><strong>Question 1</strong></h3>
-					<h4>Your mind is always buzzing with unexplored ideas and plans.</h4>
+							<h3><strong>About You</strong></h3>
+							<form>
+								<h4>Name (Required)</h4>
+								<input type="text" id="name" class="form-control" required>
+								<h4>Link to Photo Image (Required)</h4>
+								<input type="file" id="photo" required>
+								<hr>
 
-					<div id="chooseSelect-1">
+								<h3><strong>Question 1</strong></h3>
+								<h4>Your mind is always buzzing with unexplored ideas and plans.</h4>
+
+								<div id="chooseSelect-1">
+								</div>
+
+								<h3><strong>Question 2</strong></h3>
+								<h4>Generally speaking, you rely more on your experience than your imagination.</h4>
+
+								<div id="chooseSelect-2">
+								</div>
+
+
+
+								<h3><strong>Question 3</strong></h3>
+								<h4>You find it easy to stay relaxed and focused even when there is some pressure.</h4>
+
+								<div id="chooseSelect-3">
+								</div>
+
+
+								<h3><strong>Question 4</strong></h3>
+								<h4>You rarely do something just out of sheer curiosity.</h4>
+
+								<div id="chooseSelect-4">
+								</div>
+
+
+
+								<h3><strong>Question 5</strong></h3>
+								<h4>People can rarely upset you.</h4>
+
+								<div id="chooseSelect-5">
+								</div>
+
+
+
+								<h3><strong>Question 6</strong></h3>
+								<h4>It is often difficult for you to relate to other people’s feelings.</h4>
+
+								<div id="chooseSelect-6">
+								</div>
+
+
+
+								<h3><strong>Question 7</strong></h3>
+								<h4>In a discussion, truth should be more important than people’s sensitivities.</h4>
+
+								<div id="chooseSelect-7">
+								</div>
+
+
+
+								<h3><strong>Question 8</strong></h3>
+								<h4>You rarely get carried away by fantasies and ideas.</h4>
+
+								<div id="chooseSelect-8">
+								</div>
+
+
+
+								<h3><strong>Question 9</strong></h3>
+								<h4>You think that everyone’s views should be respected regardless of whether they are supported by facts or not.</h4>
+
+								<div id="chooseSelect-9">
+								</div>
+
+
+
+								<h3><strong>Question 10</strong></h3>
+								<h4>You feel more energetic after spending time with a group of people.</h4>
+
+								<div id="chooseSelect-10">
+								</div>
+
+								<br>
+								<hr>
+
+								<button class="btn btn-primary btn-lg submit" type="submit" value="Submit" data-target="#mymodal">Submit</button>
+								<!-- data-toggle="modal" -->
+							</form>
+
+						</div>
 					</div>
+				</div>
 
-					<h3><strong>Question 2</strong></h3>
-					<h4>Generally speaking, you rely more on your experience than your imagination.</h4>
 
-					<div id="chooseSelect-2">
+
+				<div class="container">
+					<div class="row">
+						<div class="col-md-12">			
+							
+							<footer><span><a href="/api">API Friends List</a> | <a href="https://github.com/mkmorfess/FriendFinder">GitHub Repo</a></span></footer>
+
+						</div>
 					</div>
-
-
-
-					<h3><strong>Question 3</strong></h3>
-					<h4>You find it easy to stay relaxed and focused even when there is some pressure.</h4>
-
-					<div id="chooseSelect-3">
-					</div>
-
-
-					<h3><strong>Question 4</strong></h3>
-					<h4>You rarely do something just out of sheer curiosity.</h4>
-
-					<div id="chooseSelect-4">
-					</div>
-
-
-
-					<h3><strong>Question 5</strong></h3>
-					<h4>People can rarely upset you.</h4>
-
-					<div id="chooseSelect-5">
-					</div>
-
-
-
-					<h3><strong>Question 6</strong></h3>
-					<h4>It is often difficult for you to relate to other people’s feelings.</h4>
-
-					<div id="chooseSelect-6">
-					</div>
-
-
-
-					<h3><strong>Question 7</strong></h3>
-					<h4>In a discussion, truth should be more important than people’s sensitivities.</h4>
-
-					<div id="chooseSelect-7">
-					</div>
-
-
-
-					<h3><strong>Question 8</strong></h3>
-					<h4>You rarely get carried away by fantasies and ideas.</h4>
-
-					<div id="chooseSelect-8">
-					</div>
-
-
-
-					<h3><strong>Question 9</strong></h3>
-					<h4>You think that everyone’s views should be respected regardless of whether they are supported by facts or not.</h4>
-
-					<div id="chooseSelect-9">
-					</div>
-
-
-
-					<h3><strong>Question 10</strong></h3>
-					<h4>You feel more energetic after spending time with a group of people.</h4>
-
-					<div id="chooseSelect-10">
-					</div>
-
-					<br>
-					<hr>
-
-					<button class="btn btn-primary btn-lg" type="submit" value="Submit" data-target="#mymodal">Submit</button>
-					<!-- data-toggle="modal" -->
-				</form>
-
-							<span><a href="/api/friends">API Friends List</a> | <a href="https://github.com/mkmorfess/FriendFinder">GitHub Repo</a></span>
-
+				</div>
+						
 
 
 					
@@ -216,17 +234,18 @@ $(document).ready(function(){
 			scores: []
 		}
 			
+			
 
 		for (var i = 1; i < 11; i++) {
 
 			newPerson.scores.push($("#q" + i).val())
-		// 	console.log(newPerson.scores)
+			console.log(newPerson.scores)
 		}
 
 		if (newPerson.scores.includes("Please Choose A Number")) {
 
 			alert("Please Answer All The Questions")
-			newPerson.scores = [];
+			// newPerson.scores = [];
 
 		}
 
@@ -247,7 +266,7 @@ $(document).ready(function(){
 			// var currentEntry = data.matches[matches.length -1];
 			// var currentName = currentEntry.name;
 			// var currentScores = currentEntry.scores;
-
+			console.log(newPerson)
 			var currentEntry;
 			var currentName;
 			var currentScores;
@@ -256,8 +275,10 @@ $(document).ready(function(){
   				.done(function(data) {
   					console.log("This is POST data log __")
     				console.log(data);
-    			// 	alert("Adding character...");
+    			// 	alert("Adding friend...");
   			});
+
+  			newPerson.name = newPerson.name.replace(/\s+/g, "_").toLowerCase();
 
   			$.get("/api/" + newPerson.name, function(newData) {
   				console.log("This is GET data log __")

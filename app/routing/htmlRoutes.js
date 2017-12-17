@@ -31,9 +31,12 @@ app.get("/api/:friend?", function(req, res) {
 	var chosen = req.params.friend;
 
   if (chosen) {
+    console.log("THIS IS THE CHOSEN")
     console.log(chosen);
 
+
     for (var i = 0; i < data.matches.length; i++) {
+      data.matches[i].name = data.matches[i].name.replace(/\s+/g, "_").toLowerCase();
       if (chosen === data.matches[i].name) {
         return res.json(data.matches[i]);
       }
@@ -48,12 +51,12 @@ app.get("/api/:friend?", function(req, res) {
 app.post("/api/new", function(req, res) {
  
   var newfriend = req.body;
-  // newcharacter.routeName = newcharacter.name.replace(/\s+/g, "").toLowerCase();
+  // newfriend.name = newfriend.name.replace(/\s+/g, "_").toLowerCase();
 
   console.log(newfriend);
   console.log("^ This is new friend");
 
- data.UserFriend(newfriend.name, newfriend.photo, newfriend.scores11)
+ data.UserFriend(newfriend.name, newfriend.photo, newfriend.scores)
 
   res.json(newfriend);
 });

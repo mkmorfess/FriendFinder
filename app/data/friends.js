@@ -59,18 +59,21 @@ $(document).ready(function(){
 	$("form").submit(function(event){
 
 		event.preventDefault();
-			
-		var newPerson = {
-			name: $("#name").val().trim(),
-			photo: $("#photo").val().trim(),
-			scores: []
-		}
+		
+		var userName = $("#name").val().trim();
+		var photo = $("#photo").val().trim();
+		var scores = [];
+		// var newPerson = {
+		// 	"name": $("#name").val().trim(),
+		// 	"photo": $("#photo").val().trim(),
+		// 	"scores": []
+		// }
 			
 
 		for (var i = 1; i < 11; i++) {
 
 			newPerson.scores.push($("#q" + i).val())
-			console.log(newPerson.scores)
+			// console.log(newPerson.scores)
 		}
 
 		if (newPerson.scores.includes("Please Choose A Number")) {
@@ -102,7 +105,7 @@ $(document).ready(function(){
 			var currentName;
 			var currentScores;
 
-			$.post("/api/new", newPerson)
+			$.post("/api/new", userName + photo + scores)
   				.done(function(data) {
   					// console.log("This is POST data log __")
     			// 	console.log(data);
