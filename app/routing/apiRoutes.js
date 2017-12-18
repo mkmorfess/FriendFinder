@@ -1,12 +1,12 @@
 var data = require("../data/friends.js");
-var express = require("express");
-var bodyParser = require("body-parser");
-var path = require("path");
+// var express = require("express");
+// var bodyParser = require("body-parser");
+// var path = require("path");
 
 
-var app = express();
+// var app = express();
 
-var appPost = function(){
+var appPost = function(app){
 
 	app.post("/api/new", function(req, res) {
 
@@ -23,7 +23,7 @@ var appPost = function(){
 }
 
 
-var appGet = function(){
+var appGet = function(app){
 	app.get("/api/:friend?", function(req, res) {
 
 	  	var chosen = req.params.friend;

@@ -1,16 +1,4 @@
-// var data = require("../data/friends.js");
-
-var express = require("express");
-var bodyParser = require("body-parser");
-var path = require("path");
-
-
-var app = express();
-
-
-
-
-var appHome = function() {
+var appHome = function(app, path) {
 
   app.get("/", function(req, res) {
 
@@ -19,7 +7,7 @@ var appHome = function() {
   });
 }
 
-var appSurvey = function() {
+var appSurvey = function(app, path) {
 
   app.get("/survey", function(req, res) {
 
@@ -31,7 +19,7 @@ var appSurvey = function() {
 
 module.exports = {
   appHome: appHome,
-  appSurvey: appSurvey
+  appSurvey: appSurvey,
 }
   
   	

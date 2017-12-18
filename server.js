@@ -11,21 +11,21 @@ var app = express();
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-app.use('/', express.static(path.join(__dirname, '../public')))
-app.use('/survey/', express.static(path.join(__dirname, '../public')))
+app.use('/', express.static(path.join(__dirname, 'app/public')))
+app.use('/survey/', express.static(path.join(__dirname, 'app/public')))
 
 
+htmlRoutes.appHome(app, path);
+htmlRoutes.appSurvey(app, path);
 
+apiRoutes.appPost(app);
+apiRoutes.appGet(app);
 
 
 app.listen(PORT, function(){
 
 	console.log("Listening on port: " + PORT);
-	htmlRoutes.appHome();
-	htmlRoutes.appSurvey();
-
-	apiRoutes.appPost();
-	apiRoutes.appGet();
+	
 });
 
 
