@@ -113,8 +113,8 @@ $(document).ready(function(){
   			newPerson.name = newPerson.name.replace(/\s+/g, " ").toLowerCase();
 
 			$.get("/api", function(data) {
-				// console.log("This is the 1st GET request");
-				// console.log(data);
+				console.log("This is the 1st GET request");
+				console.log(data);
 				for (var i = 0; i < data.length; i++) {
 					if (i < data.length - 1) {
 						matches.push(data[i]);
@@ -125,8 +125,8 @@ $(document).ready(function(){
 						currentScores = data[i].scores
 					}
 				}
-				// console.log("This is the matches")
-				// console.log(matches)
+				console.log("This is the matches")
+				console.log(matches)
 
 	  			// $.get("/api/" + newPerson.name, function(newData) {
 	  			// 	console.log("This is the 2nd GET data log __")
@@ -148,10 +148,10 @@ $(document).ready(function(){
 
 	    		
 
-		    		// console.log("THIS IS THE STUFF OUTSIDE THE GET STUFF")
-		    		// console.log(currentEntry);
-		    		// console.log(matches);
-		    		// console.log("______________________________________")
+		   //  		console.log("THIS IS THE STUFF OUTSIDE THE GET STUFF")
+		   //  		console.log(currentEntry);
+		   //  		console.log(matches);
+		   //  		console.log("______________________________________")
 
 		    		
 
@@ -177,7 +177,7 @@ $(document).ready(function(){
 
 							var currentMatch = matches[i];
 							names.push(currentMatch.name);
-							// console.log(currentMatch);
+							console.log(currentMatch);
 
 							for (var j = 0; j < currentMatch.scores.length; j++) {
 
