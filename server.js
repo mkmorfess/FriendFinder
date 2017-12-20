@@ -23,7 +23,7 @@ apiRoutes.appPost(app);
 apiRoutes.appGet(app);
 
 
-app.listen(process.env.port || PORT, function(){
+app.listen(process.env.PORT || PORT, function(){
 
 	console.log("Listening on port: " + PORT);
 	
