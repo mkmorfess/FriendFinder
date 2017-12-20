@@ -17,6 +17,7 @@ app.use('/survey/', express.static(path.join(__dirname, 'app/public')))
 
 htmlRoutes.appHome(app, path);
 htmlRoutes.appSurvey(app, path);
+htmlRoutes.appCatchAll(app, path);
 
 apiRoutes.appPost(app);
 apiRoutes.appGet(app);
